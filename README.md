@@ -1,4 +1,4 @@
-# whplay
+# WHPlay
 
 ## com.domain.app.whplay
 
