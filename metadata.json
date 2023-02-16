@@ -1,0 +1,6 @@
+{
+  "name": "whplay",
+  "identifier": "com.domain.app.whplay",
+  "version": "1.0.0",
+  "icon": "./static/icon.png"
+}
