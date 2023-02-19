@@ -1,13 +1,6 @@
-import { Lightning, Utils } from '@lightningjs/sdk'
+import { Lightning, Utils } from "@lightningjs/sdk"
 
-export default class App extends Lightning.Component {
-  static getFonts() {
-    return [
-      { family: 'Regular', url: Utils.asset('fonts/Roboto-Regular.ttf') },
-      { family: 'Bold', url: Utils.asset('fonts/Roboto-Bold.ttf') }
-    ]
-  }
-
+export default class TheLastOfUsScreen extends Lightning.Component {
   static _template() {
     return {
       Background: {
@@ -23,22 +16,25 @@ export default class App extends Lightning.Component {
         mount: 0.5,
         Wrapper: {
 
-        },
+        }
       },
       Logo: {
         mount: 0.5,
-        w: 120,
-        h: 60,
-        x: 130,
+        x: 120,
         y: 50,
-        src: Utils.asset('images/logo.png'),
+        text: {
+          text: "WHPlay",
+          fontFace: 'Bold',
+          fontSize: 30,
+          textColor: 0xffffffff,
+        },
       },
-      BlackAdam: {
+      Tile: {
         mount: 0.5,
         x: 150,
         y: 130,
         text: {
-          text: "Black Adam",
+          text: "The Last Of Us",
           fontFace: 'Regular',
           fontSize: 25,
           textColor: 0xffffffff,
@@ -47,17 +43,14 @@ export default class App extends Lightning.Component {
     }
   }
 
-
-
-
   _init() {
     this.index = 0;
-    this.dataLength = 3;
+    this.dataLength = 2;
     const buttons = [];
 
     for (let i = 0; i < this.dataLength; i++) {
       buttons.push(
-        { type: BlackAdam, x: i * (300 + 30), item: { label: `Train`, src: Utils.asset(`images/blackadam${i + 1}.jpg`) } },
+        { type: Tile, x: i * (300 + 30), item: { label: `Train`, src: Utils.asset(`images/thumbnail${i + 1}.jpg`) } },
       );
     }
 
@@ -101,12 +94,11 @@ export default class App extends Lightning.Component {
   }
 
   _getFocused() {
-    return this.tag('Slider.Wrapper').children[this.index]
+    return this.tag('Slider.Wrapper').children[this.index];
   }
-
 }
 
-class BlackAdam extends Lightning.Component {
+class TheLastOfUs extends Lightning.Component {
   static _template() {
     return {
       w: 300,
@@ -127,14 +119,12 @@ class BlackAdam extends Lightning.Component {
   _focus() {
     this.patch({
       smooth: { color: 0xff005500, scale: 1.1 },
-      shader: { type: Lightning.shaders.Outline, stroke: 1.1, color: 0xff09f676 },
     });
   }
 
   _unfocus() {
     this.patch({
       smooth: { color: 0xffffffff, scale: 1.0 },
-      shader: { type: Lightning.shaders.Outline, stroke: 0, color: 0x0000000 },
     });
   }
 }
